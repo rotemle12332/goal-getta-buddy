@@ -91,7 +91,7 @@ function Home() {
           return td >= d && td < next && t.kind === "deposit";
         })
         .reduce((a, b) => a + Number(b.amount), 0);
-      return { day: d.toLocaleDateString(undefined, { weekday: "short" }).toUpperCase(), v: sum };
+      return { day: d.toLocaleDateString(locale, { weekday: "short" }).toUpperCase(), v: sum };
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [txs, locale]);
