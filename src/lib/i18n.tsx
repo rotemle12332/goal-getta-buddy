@@ -106,6 +106,9 @@ const en: Dict = {
   "weekly.encourageDown": "A slower week — a small deposit today gets you back on track.",
   "weekly.entryTitle": "This week's report",
   "weekly.entrySub": "See your animated weekly snapshot",
+  "weekly.done": "Done",
+  "weekly.subSaved": "Every deposit this week stacks up here.",
+  "weekly.subProgress": "Share of your total target reached this week.",
 
 
   // Goals
@@ -787,6 +790,9 @@ const he: Dict = {
   "weekly.encourageDown": "שבוע איטי — הפקדה קטנה היום תחזיר אותך למסלול.",
   "weekly.entryTitle": "הדוח של השבוע",
   "weekly.entrySub": "צפה בתמונת המצב השבועית המונפשת",
+  "weekly.done": "סיום",
+  "weekly.subSaved": "כל הפקדה שעשית השבוע מצטברת כאן.",
+  "weekly.subProgress": "החלק מהיעד הכולל שהושג השבוע.",
   "goals.title": "יעדים", "goals.your": "היעדים שלך",
   "goals.empty.title": "אין יעדים עדיין", "goals.empty.subtitle": "צור את יעד החיסכון הראשון שלך.",
   "goals.create": "צור יעד", "goals.menu.deposit": "הוסף הפקדה", "goals.menu.delete": "מחק",

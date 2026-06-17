@@ -14,6 +14,7 @@ import { useGoals, useTransactions } from "@/lib/use-goals";
 import { useProfile } from "@/lib/use-profile";
 import { useAuth } from "@/lib/auth-context";
 import { useT } from "@/lib/i18n";
+import { shouldShowWeeklyEntry } from "@/lib/weekly-report-state";
 
 export const Route = createFileRoute("/_authenticated/")({
   head: () => ({ meta: [{ title: "Home — Goaly" }] }),
@@ -57,6 +58,8 @@ function Home() {
   const currency = profile?.currency ?? "USD";
   const [idx, setIdx] = useState(0);
   const [depositOpen, setDepositOpen] = useState(false);
+  const [showWeekly, setShowWeekly] = useState(false);
+  useEffect(() => { setShowWeekly(shouldShowWeeklyEntry()); }, []);
 
   // Onboarding: first-time users see the 3 intro slides
   useEffect(() => {
@@ -91,7 +94,7 @@ function Home() {
           return td >= d && td < next && t.kind === "deposit";
         })
         .reduce((a, b) => a + Number(b.amount), 0);
-      return { day: d.toLocaleDateString(undefined, { weekday: "short" }).toUpperCase(), v: sum };
+      return { day: d.toLocaleDateString(locale, { weekday: "short" }).toUpperCase(), v: sum };
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [txs, locale]);
@@ -240,22 +243,31 @@ function Home() {
         </div>
       </div>
 
-      {/* Weekly report entry */}
-      <div className="px-5 mt-4 animate-fade-up" style={{ animationDelay: "0.3s" }}>
-        <button
-          onClick={() => navigate({ to: "/weekly-report" })}
-          className="press lift relative w-full overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-primary/15 via-card/70 to-amber-500/10 backdrop-blur-sm p-4 text-left flex items-center gap-3"
-        >
-          <div className="size-10 rounded-xl bg-background/60 flex items-center justify-center text-primary animate-pop">
-            <Sparkles className="size-5" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="text-sm font-semibold">{t("weekly.entryTitle")}</div>
-            <div className="text-xs text-muted-foreground truncate">{t("weekly.entrySub")}</div>
-          </div>
-          <ChevronRight className="size-4 text-muted-foreground" />
-        </button>
-      </div>
+      {/* Weekly report entry — only on Mondays, once per week */}
+      {showWeekly && (
+        <div className="px-5 mt-4 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+          <button
+            onClick={() => navigate({ to: "/weekly-report" })}
+            className="press lift relative w-full overflow-hidden rounded-2xl border border-primary/40 bg-gradient-to-br from-primary/20 via-card/70 to-amber-500/15 backdrop-blur-sm p-4 text-left flex items-center gap-3 animate-pulse-glow"
+          >
+            <div className="size-10 rounded-xl bg-background/60 flex items-center justify-center text-primary animate-pop">
+              <Sparkles className="size-5" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-sm font-semibold">{t("weekly.entryTitle")}</div>
+              <div className="text-xs text-muted-foreground truncate">{t("weekly.entrySub")}</div>
+            </div>
+            <ChevronRight className="size-4 text-muted-foreground" />
+            <style>{`
+              @keyframes pulse-glow {
+                0%,100% { box-shadow: 0 0 0 0 oklch(0.82 0.16 210 / 0.0); }
+                50%     { box-shadow: 0 0 0 6px oklch(0.82 0.16 210 / 0.18); }
+              }
+              .animate-pulse-glow { animation: pulse-glow 2.6s ease-in-out infinite; }
+            `}</style>
+          </button>
+        </div>
+      )}
 
       {active && (
         <div className="px-5 mt-3">
