@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import {
   ChevronDown, ChevronLeft, ChevronRight, Flame, Wallet, Target, TrendingUp,
-  Lock, Plus,
+  Lock, Plus, Sparkles,
 } from "lucide-react";
 import { MobileFrame } from "@/components/goaly/MobileFrame";
 import { ProgressRing } from "@/components/goaly/ProgressRing";
