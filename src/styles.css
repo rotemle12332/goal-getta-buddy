@@ -1,0 +1,305 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* DARK (default) — matches reference dark mockup */
+:root {
+  --radius: 1.25rem;
+
+  --background: oklch(0.16 0.02 240);
+  --foreground: oklch(0.98 0.005 240);
+
+  --card: oklch(0.21 0.025 240);
+  --card-foreground: oklch(0.98 0.005 240);
+
+  --popover: oklch(0.21 0.025 240);
+  --popover-foreground: oklch(0.98 0.005 240);
+
+  --primary: oklch(0.82 0.16 210);
+  --primary-foreground: oklch(0.16 0.02 240);
+
+  --secondary: oklch(0.27 0.03 240);
+  --secondary-foreground: oklch(0.98 0.005 240);
+
+  --muted: oklch(0.25 0.025 240);
+  --muted-foreground: oklch(0.7 0.02 240);
+
+  --accent: oklch(0.3 0.04 220);
+  --accent-foreground: oklch(0.98 0.005 240);
+
+  --destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(0.98 0.005 240);
+
+  --success: oklch(0.78 0.18 150);
+  --warning: oklch(0.78 0.17 55);
+
+  --border: oklch(0.3 0.025 240 / 60%);
+  --input: oklch(0.28 0.025 240);
+  --ring: oklch(0.82 0.16 210);
+
+  --gradient-brand: linear-gradient(135deg, oklch(0.85 0.15 180), oklch(0.7 0.2 240));
+  --gradient-card: linear-gradient(180deg, oklch(0.24 0.03 240), oklch(0.2 0.025 240));
+  --bg-radial-1: oklch(0.3 0.08 220 / 35%);
+  --bg-radial-2: oklch(0.25 0.06 200 / 20%);
+  --shadow-glow: 0 0 40px -10px oklch(0.82 0.16 210 / 45%);
+  --shadow-soft: 0 8px 24px -8px oklch(0 0 0 / 50%);
+}
+
+/* LIGHT */
+.light {
+  --background: oklch(0.985 0.005 240);
+  --foreground: oklch(0.2 0.02 240);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2 0.02 240);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0.02 240);
+
+  --primary: oklch(0.7 0.17 215);
+  --primary-foreground: oklch(0.99 0.005 240);
+
+  --secondary: oklch(0.95 0.01 240);
+  --secondary-foreground: oklch(0.2 0.02 240);
+
+  --muted: oklch(0.94 0.01 240);
+  --muted-foreground: oklch(0.5 0.02 240);
+
+  --accent: oklch(0.92 0.04 220);
+  --accent-foreground: oklch(0.2 0.02 240);
+
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.99 0.005 240);
+
+  --success: oklch(0.65 0.18 150);
+  --warning: oklch(0.7 0.17 55);
+
+  --border: oklch(0.88 0.01 240 / 80%);
+  --input: oklch(0.94 0.01 240);
+  --ring: oklch(0.7 0.17 215);
+
+  --gradient-brand: linear-gradient(135deg, oklch(0.78 0.14 200), oklch(0.65 0.18 230));
+  --gradient-card: linear-gradient(180deg, oklch(1 0 0), oklch(0.97 0.005 240));
+  --bg-radial-1: oklch(0.8 0.12 220 / 30%);
+  --bg-radial-2: oklch(0.85 0.08 200 / 25%);
+  --shadow-glow: 0 10px 40px -10px oklch(0.7 0.17 215 / 35%);
+  --shadow-soft: 0 8px 24px -10px oklch(0.2 0.02 240 / 15%);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body, #root { height: 100%; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(ellipse at top, var(--bg-radial-1), transparent 60%),
+      radial-gradient(ellipse at bottom, var(--bg-radial-2), transparent 60%);
+    background-attachment: fixed;
+    transition: background-color 0.5s ease, color 0.35s ease;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+/* ============================================================
+   19 HIGH-QUALITY SMOOTH ANIMATIONS
+   ============================================================ */
+
+/* 1. fade-up */
+@keyframes goaly-fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: goaly-fade-up 0.55s cubic-bezier(0.22,1,0.36,1) both; }
+
+/* 2. fade-in soft */
+@keyframes goaly-fade-in { from { opacity: 0; } to { opacity: 1; } }
+.animate-fade-in-soft { animation: goaly-fade-in 0.5s ease-out both; }
+
+/* 3. pop */
+@keyframes goaly-pop {
+  0% { transform: scale(0.94); opacity: 0; }
+  60% { transform: scale(1.02); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.animate-pop { animation: goaly-pop 0.45s cubic-bezier(0.22,1,0.36,1) both; }
+
+/* 4. slide-up (bigger travel, for sheets / cards) */
+@keyframes goaly-slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up { animation: goaly-slide-up 0.55s cubic-bezier(0.22,1,0.36,1) both; }
+
+/* 5. slide-in-right (screen transition) */
+@keyframes goaly-slide-right {
+  from { opacity: 0; transform: translateX(28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.animate-slide-right { animation: goaly-slide-right 0.5s cubic-bezier(0.22,1,0.36,1) both; }
+
+/* 6. slide-in-left */
+@keyframes goaly-slide-left {
+  from { opacity: 0; transform: translateX(-28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.animate-slide-left { animation: goaly-slide-left 0.5s cubic-bezier(0.22,1,0.36,1) both; }
+
+/* 7. frame-in: the phone frame entrance */
+@keyframes goaly-frame-in {
+  from { opacity: 0; transform: translateY(20px) scale(0.985); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-frame-in { animation: goaly-frame-in 0.7s cubic-bezier(0.22,1,0.36,1) both; }
+
+/* 8. float (gentle perpetual) */
+@keyframes goaly-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+.animate-float { animation: goaly-float 4.5s ease-in-out infinite; }
+
+/* 9. floatX-alt offset float for satellite icons */
+@keyframes goaly-float-alt {
+  0%, 100% { transform: translateY(-3px); }
+  50%      { transform: translateY(5px); }
+}
+.animate-float-alt { animation: goaly-float-alt 5s ease-in-out infinite; }
+
+/* 10. pulse-glow (rings around icons) */
+@keyframes goaly-pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(0.82 0.16 210 / 35%); }
+  50%      { box-shadow: 0 0 0 14px oklch(0.82 0.16 210 / 0%); }
+}
+.animate-pulse-glow { animation: goaly-pulse-glow 2.4s ease-out infinite; }
+
+/* 11. shimmer (for loading / text gradient sweep) */
+@keyframes goaly-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, oklch(0.82 0.16 210 / 25%), transparent);
+  background-size: 200% 100%;
+  animation: goaly-shimmer 2.2s linear infinite;
+}
+
+/* 12. count-up scale (numbers swap) */
+@keyframes goaly-count {
+  0%   { opacity: 0; transform: translateY(8px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-count { animation: goaly-count 0.6s cubic-bezier(0.22,1,0.36,1) both; }
+
+/* 13. spin-slow (orbital) */
+@keyframes goaly-spin-slow { to { transform: rotate(360deg); } }
+.animate-spin-slow { animation: goaly-spin-slow 22s linear infinite; }
+
+/* 14. tilt (subtle hover-like idle) */
+@keyframes goaly-tilt {
+  0%, 100% { transform: rotate(-1deg); }
+  50%      { transform: rotate(1deg); }
+}
+.animate-tilt { animation: goaly-tilt 6s ease-in-out infinite; }
+
+/* 15. bg-shift (gradient backdrop drift) */
+@keyframes goaly-bg-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+.animate-bg-shift { background-size: 200% 200%; animation: goaly-bg-shift 18s ease-in-out infinite; }
+
+/* 16. dot-bounce (carousel indicator) */
+@keyframes goaly-dot {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.35); }
+}
+.animate-dot { animation: goaly-dot 1.6s ease-in-out infinite; }
+
+/* 17. wiggle (subtle attention) */
+@keyframes goaly-wiggle {
+  0%, 100% { transform: rotate(0); }
+  25%      { transform: rotate(-3deg); }
+  75%      { transform: rotate(3deg); }
+}
+.animate-wiggle { animation: goaly-wiggle 0.6s ease-in-out; }
+
+/* 18. ring-draw helper (handled inline via stroke-dashoffset) */
+@keyframes goaly-ring-draw {
+  from { stroke-dashoffset: var(--ring-c, 999); }
+  to   { stroke-dashoffset: var(--ring-offset, 0); }
+}
+
+/* 19. lift-in (cards entering with subtle Y + scale) */
+@keyframes goaly-lift-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-lift-in { animation: goaly-lift-in 0.55s cubic-bezier(0.22,1,0.36,1) both; }
+
+/* Stagger helper */
+.stagger > * { animation: goaly-fade-up 0.55s cubic-bezier(0.22,1,0.36,1) both; }
+.stagger > *:nth-child(1) { animation-delay: 0.04s; }
+.stagger > *:nth-child(2) { animation-delay: 0.10s; }
+.stagger > *:nth-child(3) { animation-delay: 0.16s; }
+.stagger > *:nth-child(4) { animation-delay: 0.22s; }
+.stagger > *:nth-child(5) { animation-delay: 0.28s; }
+.stagger > *:nth-child(6) { animation-delay: 0.34s; }
+.stagger > *:nth-child(7) { animation-delay: 0.40s; }
+.stagger > *:nth-child(8) { animation-delay: 0.46s; }
+
+/* Interactive helpers */
+.press { transition: transform 0.18s cubic-bezier(0.22,1,0.36,1), box-shadow 0.2s ease; }
+.press:active { transform: scale(0.96); }
+.lift { transition: transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease, border-color 0.3s ease; }
+.lift:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); }
+.glow:hover { box-shadow: var(--shadow-glow); }
+
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { scrollbar-width: none; }
+
+.text-gradient-brand {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
