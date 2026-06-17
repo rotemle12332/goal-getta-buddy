@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import {
   ChevronDown, ChevronLeft, ChevronRight, Flame, Wallet, Target, TrendingUp,
-  Lock, Plus,
+  Lock, Plus, Sparkles,
 } from "lucide-react";
 import { MobileFrame } from "@/components/goaly/MobileFrame";
 import { ProgressRing } from "@/components/goaly/ProgressRing";
@@ -238,6 +238,23 @@ function Home() {
             highlightLast
           />
         </div>
+      </div>
+
+      {/* Weekly report entry */}
+      <div className="px-5 mt-4 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+        <button
+          onClick={() => navigate({ to: "/weekly-report" })}
+          className="press lift relative w-full overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-primary/15 via-card/70 to-amber-500/10 backdrop-blur-sm p-4 text-left flex items-center gap-3"
+        >
+          <div className="size-10 rounded-xl bg-background/60 flex items-center justify-center text-primary animate-pop">
+            <Sparkles className="size-5" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="text-sm font-semibold">{t("weekly.entryTitle")}</div>
+            <div className="text-xs text-muted-foreground truncate">{t("weekly.entrySub")}</div>
+          </div>
+          <ChevronRight className="size-4 text-muted-foreground" />
+        </button>
       </div>
 
       {active && (
