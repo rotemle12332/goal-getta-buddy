@@ -90,6 +90,7 @@ function SettingsPage() {
   const { data: profile } = useProfile();
   const update = useUpdateProfile();
   const [notifs, setNotifs] = useState(true);
+  const [downloadOpen, setDownloadOpen] = useState(false);
 
   const [localTheme, setLocalTheme] = useState<ThemePref>(() => {
     if (typeof window === "undefined") return "system";
@@ -274,6 +275,14 @@ function SettingsPage() {
             ))}
           </div>
         </div>
+      </Group>
+
+      <Group title={translate("settings.data")}>
+        <Row
+          icon={<Download className="size-4" />}
+          label={translate("settings.downloadSource")}
+          onClick={() => setDownloadOpen(true)}
+        />
       </Group>
 
       <Group title={translate("settings.support")}>
