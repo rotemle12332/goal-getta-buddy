@@ -298,7 +298,7 @@ function SettingsPage() {
         />
       </Group>
 
-      <div className="px-5 mb-8 animate-fade-up">
+      <div className="px-5 mb-6 animate-fade-up">
         <button
           onClick={handleLogout}
           className="press w-full h-12 rounded-2xl border border-border bg-card/60 flex items-center justify-center gap-2 text-sm font-medium text-destructive hover:bg-destructive/10 transition-colors"
