@@ -13,7 +13,15 @@ import {
   Check,
   Palette,
   Languages,
+  Download,
 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { MobileFrame } from "@/components/goaly/MobileFrame";
 import { ScreenHeader } from "@/components/goaly/ScreenHeader";
 import { useProfile, useUpdateProfile, type ThemePref } from "@/lib/use-profile";

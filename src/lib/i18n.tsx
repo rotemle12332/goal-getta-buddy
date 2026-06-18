@@ -160,6 +160,9 @@ const en: Dict = {
   "settings.contact": "Contact Us",
   "settings.logout": "Log out",
   "settings.defaultName": "Goaly user",
+  "settings.data": "Data",
+  "settings.downloadSource": "Download app source",
+  "settings.downloadSourceDesc": "Connect your project to GitHub to export the full codebase as a ZIP anytime.",
 
   // New goal
   "newgoal.heading": "New goal",
