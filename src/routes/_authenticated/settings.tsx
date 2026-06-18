@@ -40,7 +40,7 @@ export const Route = createFileRoute("/_authenticated/settings")({
 
 function Group({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="px-5 mb-5 animate-fade-up">
+    <div className="px-5 mb-4 animate-fade-up">
       <div className="text-xs text-muted-foreground mb-2 px-1 uppercase tracking-wider">
         {title}
       </div>
@@ -69,7 +69,7 @@ function Row({
   return (
     <Comp
       onClick={onClick}
-      className={`w-full flex items-center justify-between py-3.5 px-4 transition-colors ${isButton ? "press hover:bg-secondary/60" : ""}`}
+      className={`w-full flex items-center justify-between py-3 px-4 transition-colors ${isButton ? "press hover:bg-secondary/60" : ""}`}
     >
       <div className="flex items-center gap-3">
         <span className="text-muted-foreground">{icon}</span>
