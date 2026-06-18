@@ -307,6 +307,20 @@ function SettingsPage() {
           {translate("settings.logout")}
         </button>
       </div>
+
+      <Dialog open={downloadOpen} onOpenChange={setDownloadOpen}>
+        <DialogContent className="bg-card border-border max-w-sm">
+          <DialogHeader>
+            <DialogTitle>{translate("settings.downloadSource")}</DialogTitle>
+            <DialogDescription>{translate("settings.downloadSourceDesc")}</DialogDescription>
+          </DialogHeader>
+          <div className="text-sm text-muted-foreground space-y-3">
+            <p>1. Open the Lovable editor menu → GitHub → Connect project.</p>
+            <p>2. Once synced, visit the repo on GitHub.</p>
+            <p>3. Click <b>Code → Download ZIP</b> to get the full source anytime.</p>
+          </div>
+        </DialogContent>
+      </Dialog>
     </MobileFrame>
   );
 }
