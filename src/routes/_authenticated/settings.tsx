@@ -13,7 +13,15 @@ import {
   Check,
   Palette,
   Languages,
+  Download,
 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { MobileFrame } from "@/components/goaly/MobileFrame";
 import { ScreenHeader } from "@/components/goaly/ScreenHeader";
 import { useProfile, useUpdateProfile, type ThemePref } from "@/lib/use-profile";
@@ -32,7 +40,7 @@ export const Route = createFileRoute("/_authenticated/settings")({
 
 function Group({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="px-5 mb-5 animate-fade-up">
+    <div className="px-5 mb-4 animate-fade-up">
       <div className="text-xs text-muted-foreground mb-2 px-1 uppercase tracking-wider">
         {title}
       </div>
@@ -61,7 +69,7 @@ function Row({
   return (
     <Comp
       onClick={onClick}
-      className={`w-full flex items-center justify-between py-3.5 px-4 transition-colors ${isButton ? "press hover:bg-secondary/60" : ""}`}
+      className={`w-full flex items-center justify-between py-3 px-4 transition-colors ${isButton ? "press hover:bg-secondary/60" : ""}`}
     >
       <div className="flex items-center gap-3">
         <span className="text-muted-foreground">{icon}</span>
@@ -82,6 +90,7 @@ function SettingsPage() {
   const { data: profile } = useProfile();
   const update = useUpdateProfile();
   const [notifs, setNotifs] = useState(true);
+  const [downloadOpen, setDownloadOpen] = useState(false);
 
   const [localTheme, setLocalTheme] = useState<ThemePref>(() => {
     if (typeof window === "undefined") return "system";
@@ -268,6 +277,14 @@ function SettingsPage() {
         </div>
       </Group>
 
+      <Group title={translate("settings.data")}>
+        <Row
+          icon={<Download className="size-4" />}
+          label={translate("settings.downloadSource")}
+          onClick={() => setDownloadOpen(true)}
+        />
+      </Group>
+
       <Group title={translate("settings.support")}>
         <Row
           icon={<HelpCircle className="size-4" />}
@@ -281,7 +298,7 @@ function SettingsPage() {
         />
       </Group>
 
-      <div className="px-5 mb-8 animate-fade-up">
+      <div className="px-5 mb-6 animate-fade-up">
         <button
           onClick={handleLogout}
           className="press w-full h-12 rounded-2xl border border-border bg-card/60 flex items-center justify-center gap-2 text-sm font-medium text-destructive hover:bg-destructive/10 transition-colors"
@@ -290,6 +307,20 @@ function SettingsPage() {
           {translate("settings.logout")}
         </button>
       </div>
+
+      <Dialog open={downloadOpen} onOpenChange={setDownloadOpen}>
+        <DialogContent className="bg-card border-border max-w-sm">
+          <DialogHeader>
+            <DialogTitle>{translate("settings.downloadSource")}</DialogTitle>
+            <DialogDescription>{translate("settings.downloadSourceDesc")}</DialogDescription>
+          </DialogHeader>
+          <div className="text-sm text-muted-foreground space-y-3">
+            <p>1. Open the Lovable editor menu → GitHub → Connect project.</p>
+            <p>2. Once synced, visit the repo on GitHub.</p>
+            <p>3. Click <b>Code → Download ZIP</b> to get the full source anytime.</p>
+          </div>
+        </DialogContent>
+      </Dialog>
     </MobileFrame>
   );
 }

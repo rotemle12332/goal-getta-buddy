@@ -279,8 +279,6 @@ function WeeklyReportPage() {
         </button>
       </div>
 
-      <div className="h-6" />
-
       <style>{`
         @keyframes shimmer-sweep {
           0%   { transform: translateX(-120%) rotate(12deg); }
