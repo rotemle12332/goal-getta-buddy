@@ -175,12 +175,12 @@ function OnboardingPage() {
 
         {/* Slide */}
         <div
-          key={s.key}
-          className="flex-1 flex flex-col items-center justify-center px-6 animate-slide-right"
+          key={s.key + "-" + phase}
+          className={`flex-1 flex flex-col items-center justify-center px-6 ${slideClass}`}
         >
           <div className="w-full flex justify-center">{s.render()}</div>
 
-          <div className="text-center mt-10 animate-fade-up max-w-[320px]" style={{ animationDelay: "0.1s" }}>
+          <div className="text-center mt-10 max-w-[320px] animate-fade-up" style={{ animationDelay: "0.08s" }}>
             <h2 className="text-[28px] leading-tight font-bold font-display tracking-tight text-foreground">
               {t(s.title)}
             </h2>
@@ -193,10 +193,12 @@ function OnboardingPage() {
         {/* Dots */}
         <div className="flex items-center justify-center gap-1.5 mb-6">
           {slides.map((_, i) => (
-            <span
+            <button
               key={i}
-              className={`h-1.5 rounded-full transition-all duration-500 ${
-                i === step ? "w-7 bg-primary" : "w-1.5 bg-muted-foreground/30"
+              onClick={() => i !== step && go(i > step ? 1 : -1)}
+              aria-label={`Go to step ${i + 1}`}
+              className={`h-1.5 rounded-full transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                i === step ? "w-8 bg-primary shadow-[0_0_12px_oklch(0.82_0.16_210/60%)]" : "w-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/50"
               }`}
             />
           ))}
