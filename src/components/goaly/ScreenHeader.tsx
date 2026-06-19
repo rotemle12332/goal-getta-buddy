@@ -2,7 +2,7 @@ import { MoreHorizontal } from "lucide-react";
 
 export function ScreenHeader({ title, action }: { title: string; action?: React.ReactNode }) {
   return (
-    <div className="flex items-center justify-between px-6 pt-4 pb-4">
+    <div className="flex items-center justify-between px-6 pt-3 pb-3">
       <h1 className="text-2xl font-bold">{title}</h1>
       <div className="flex items-center gap-2">
         {action}

@@ -200,7 +200,7 @@ function WeeklyReportPage() {
   ];
 
   return (
-    <MobileFrame>
+    <MobileFrame hideNav>
       {/* Top bar */}
       <div className="px-5 pt-2 flex items-center justify-between animate-fade-up">
         <button
@@ -238,7 +238,7 @@ function WeeklyReportPage() {
       </div>
 
       {/* Slide */}
-      <div className="px-5 mt-5 min-h-[260px]">{slides[step]}</div>
+      <div className="px-5 mt-4 min-h-[220px]">{slides[step]}</div>
 
       {/* Vs last week (final slide only) */}
       {step === TOTAL - 1 && (
