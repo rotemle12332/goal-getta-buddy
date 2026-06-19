@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   Lock, Target, TrendingUp, Flame, BarChart3, Users, User,
-  ArrowRight, Check,
+  ArrowRight,
 } from "lucide-react";
 import { ProgressRing } from "@/components/goaly/ProgressRing";
 import { LineChart } from "@/components/goaly/LineChart";
@@ -20,7 +20,7 @@ function SatelliteIcon({
 }: { className: string; children: React.ReactNode; delay?: number }) {
   return (
     <div
-      className={`absolute size-10 rounded-full bg-card/80 border border-border backdrop-blur-md flex items-center justify-center text-primary shadow-[var(--shadow-soft)] animate-pop ${className}`}
+      className={`absolute size-11 rounded-full bg-card/85 border border-border/80 backdrop-blur-xl flex items-center justify-center text-primary shadow-[0_8px_24px_-8px_rgba(0,0,0,0.45)] animate-pop ${className}`}
       style={{ animationDelay: `${delay}s` }}
     >
       <span className="animate-float-alt">{children}</span>
@@ -30,18 +30,26 @@ function SatelliteIcon({
 
 function SetGoalsVisual() {
   return (
-    <div className="relative flex items-center justify-center mt-2 mb-6 animate-pop">
-      <SatelliteIcon className="-left-2 top-4" delay={0.1}><Lock className="size-4" /></SatelliteIcon>
-      <SatelliteIcon className="-right-2 top-6" delay={0.2}><Target className="size-4" /></SatelliteIcon>
-      <SatelliteIcon className="-left-1 bottom-6" delay={0.3}><TrendingUp className="size-4" /></SatelliteIcon>
-      <SatelliteIcon className="-right-1 bottom-4" delay={0.4}>
+    <div className="relative flex items-center justify-center animate-pop">
+      {/* Soft glow halo behind ring */}
+      <div
+        className="pointer-events-none absolute size-[260px] rounded-full blur-3xl opacity-60"
+        style={{ background: "radial-gradient(circle, oklch(0.82 0.16 210 / 35%), transparent 70%)" }}
+        aria-hidden
+      />
+      <SatelliteIcon className="-left-3 top-2" delay={0.1}><Lock className="size-4" /></SatelliteIcon>
+      <SatelliteIcon className="-right-3 top-5" delay={0.2}><Target className="size-4" /></SatelliteIcon>
+      <SatelliteIcon className="-left-2 bottom-5" delay={0.3}><TrendingUp className="size-4" /></SatelliteIcon>
+      <SatelliteIcon className="-right-2 bottom-3" delay={0.4}>
         <Flame className="size-4 text-orange-400" />
       </SatelliteIcon>
       <ProgressRing percent={62.4} size={220}>
         <div className="text-center animate-count">
-          <div className="text-[2rem] leading-tight font-bold font-display">$12,480</div>
-          <div className="text-[11px] text-muted-foreground">of $20,000 goal</div>
-          <div className="text-primary text-lg font-bold mt-1 font-display">62.4%</div>
+          <div className="text-[2rem] leading-tight font-bold font-display text-foreground tracking-tight">
+            $12,480
+          </div>
+          <div className="text-[11px] text-muted-foreground mt-0.5">of $20,000 goal</div>
+          <div className="text-gradient-brand text-xl font-bold mt-1.5 font-display">62.4%</div>
         </div>
       </ProgressRing>
     </div>
@@ -50,9 +58,12 @@ function SetGoalsVisual() {
 
 function TrackProgressVisual() {
   return (
-    <div className="px-6 mt-2 mb-6 animate-slide-up">
-      <div className="rounded-2xl border border-border bg-card/70 backdrop-blur-sm p-4 relative">
-        <div className="absolute -top-3 right-4 px-3 py-1 rounded-full text-xs font-semibold text-primary-foreground shadow-[var(--shadow-glow)] animate-float" style={{ background: "var(--gradient-brand)" }}>
+    <div className="px-2 animate-slide-up w-full max-w-[300px]">
+      <div className="rounded-3xl border border-border/80 bg-card/80 backdrop-blur-xl p-5 relative shadow-[var(--shadow-soft)]">
+        <div
+          className="absolute -top-3 right-4 px-3 py-1 rounded-full text-xs font-semibold text-primary-foreground shadow-[var(--shadow-glow)] animate-float"
+          style={{ background: "var(--gradient-brand)" }}
+        >
           $12,480
         </div>
         <LineChart
@@ -62,7 +73,7 @@ function TrackProgressVisual() {
           height={140}
         />
         <div className="mt-4 flex items-center justify-center">
-          <div className="size-12 rounded-2xl bg-card border border-border flex items-center justify-center text-primary animate-float-alt">
+          <div className="size-12 rounded-2xl bg-background/60 border border-border flex items-center justify-center text-primary animate-float-alt">
             <BarChart3 className="size-6" />
           </div>
         </div>
@@ -73,15 +84,18 @@ function TrackProgressVisual() {
 
 function SaveTogetherVisual() {
   return (
-    <div className="relative mx-auto mt-2 mb-6 h-[220px] w-[260px] animate-pop">
+    <div className="relative mx-auto h-[220px] w-[260px] animate-pop">
+      <div
+        className="pointer-events-none absolute inset-0 rounded-full blur-3xl opacity-60"
+        style={{ background: "radial-gradient(circle, oklch(0.82 0.16 210 / 25%), transparent 70%)" }}
+        aria-hidden
+      />
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="size-20 rounded-full bg-card/80 border border-border backdrop-blur-md flex items-center justify-center text-muted-foreground animate-float">
+        <div className="size-20 rounded-full bg-card/85 border border-border backdrop-blur-xl flex items-center justify-center text-primary animate-float shadow-[var(--shadow-soft)]">
           <Users className="size-8" />
         </div>
       </div>
-      {/* orbit ring */}
-      <div className="absolute inset-0 rounded-full border border-border/60 animate-spin-slow" />
-      {/* avatars */}
+      <div className="absolute inset-0 rounded-full border border-border/50 animate-spin-slow" />
       <div className="absolute -top-2 left-6 size-14 rounded-full bg-gradient-to-br from-amber-300 to-rose-500 border-2 border-background flex items-center justify-center text-white font-bold shadow-[var(--shadow-soft)] animate-float">
         <User className="size-6" />
       </div>
@@ -107,7 +121,6 @@ function OnboardingPage() {
   const [step, setStep] = useState(0);
   const isLast = step === slides.length - 1;
 
-  // skip if already seen
   useEffect(() => {
     if (typeof window !== "undefined" && localStorage.getItem("goaly_onboarded")) {
       navigate({ to: "/" });
@@ -131,60 +144,59 @@ function OnboardingPage() {
   const s = slides[step];
 
   return (
-    <div className="min-h-screen w-full bg-background animate-bg-shift">
-      <div className="relative w-full min-h-screen bg-background overflow-hidden flex flex-col animate-frame-in">
-        <div className="pt-5" />
-
-        {/* counter top right */}
-        <div className="flex items-center justify-between px-6 mt-2">
-          <button onClick={skip} className="press text-xs text-muted-foreground hover:text-foreground transition-colors">
+    <div className="h-dvh w-full bg-background overflow-hidden">
+      <div className="relative w-full h-full flex flex-col animate-frame-in">
+        {/* Top bar: Skip / counter */}
+        <div className="flex items-center justify-between px-6 pt-[max(1rem,env(safe-area-inset-top))]">
+          <button
+            onClick={skip}
+            className="press text-[13px] text-muted-foreground hover:text-foreground transition-colors px-2 py-1 -mx-2"
+          >
             {t("common.skip")}
           </button>
-          <div className="text-xs text-muted-foreground tracking-wider">
-            {step + 1}/{slides.length}
+          <div className="text-[11px] font-medium text-muted-foreground tracking-[0.15em] tabular-nums">
+            {String(step + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
           </div>
         </div>
 
-        {/* Visual */}
-        <div key={s.key} className="flex-1 flex flex-col items-center justify-center animate-slide-right">
+        {/* Slide */}
+        <div
+          key={s.key}
+          className="flex-1 flex flex-col items-center justify-center px-6 animate-slide-right"
+        >
           <div className="w-full flex justify-center">{s.render()}</div>
 
-          <div className="px-8 text-center mt-4 animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            <h2 className="text-2xl font-bold font-display mb-2">{t(s.title)}</h2>
-            <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed">
+          <div className="text-center mt-10 animate-fade-up max-w-[320px]" style={{ animationDelay: "0.1s" }}>
+            <h2 className="text-[28px] leading-tight font-bold font-display tracking-tight text-foreground">
+              {t(s.title)}
+            </h2>
+            <p className="text-[15px] text-muted-foreground whitespace-pre-line leading-relaxed mt-2.5">
               {t(s.subtitle)}
             </p>
           </div>
         </div>
 
-        {/* dots */}
-        <div className="flex items-center justify-center gap-2 mb-5">
+        {/* Dots */}
+        <div className="flex items-center justify-center gap-1.5 mb-6">
           {slides.map((_, i) => (
             <span
               key={i}
-              className={`h-2 rounded-full transition-all duration-500 ${
-                i === step ? "w-6 bg-primary animate-dot" : "w-2 bg-muted-foreground/40"
+              className={`h-1.5 rounded-full transition-all duration-500 ${
+                i === step ? "w-7 bg-primary" : "w-1.5 bg-muted-foreground/30"
               }`}
             />
           ))}
         </div>
 
         {/* CTA */}
-        <div className="px-6 pb-7">
+        <div className="px-6 pb-[max(1.5rem,env(safe-area-inset-bottom))]">
           <button
             onClick={next}
-            className="press w-full h-14 rounded-full text-base font-semibold text-primary-foreground shadow-[var(--shadow-glow)] flex items-center justify-center gap-2 transition-transform"
+            className="press w-full h-[54px] rounded-full text-[15px] font-semibold text-primary-foreground shadow-[var(--shadow-glow)] flex items-center justify-center gap-2 transition-all hover:brightness-110 active:brightness-95"
             style={{ background: "var(--gradient-brand)" }}
           >
-            {isLast ? (
-              <>
-                {t("onb.createFirst")} <ArrowRight className="size-4" />
-              </>
-            ) : (
-              <>
-                {t("common.next")} <ArrowRight className="size-4" />
-              </>
-            )}
+            {isLast ? t("onb.createFirst") : t("common.next")}
+            <ArrowRight className="size-4" />
           </button>
         </div>
       </div>
