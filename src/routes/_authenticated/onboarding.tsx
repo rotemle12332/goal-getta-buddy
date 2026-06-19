@@ -119,6 +119,8 @@ function OnboardingPage() {
   const { t } = useT();
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
+  const [dir, setDir] = useState<1 | -1>(1);
+  const [phase, setPhase] = useState<"in" | "out">("in");
   const isLast = step === slides.length - 1;
 
   useEffect(() => {
@@ -127,14 +129,22 @@ function OnboardingPage() {
     }
   }, [navigate]);
 
-  function next() {
-    if (isLast) {
-      localStorage.setItem("goaly_onboarded", "1");
-      navigate({ to: "/goals", search: { new: 1 } as never });
-    } else {
-      setStep(step + 1);
-    }
+  function go(delta: 1 | -1) {
+    setDir(delta);
+    setPhase("out");
+    window.setTimeout(() => {
+      const nextStep = step + delta;
+      if (nextStep >= slides.length) {
+        localStorage.setItem("goaly_onboarded", "1");
+        navigate({ to: "/goals", search: { new: 1 } as never });
+        return;
+      }
+      setStep(Math.max(0, nextStep));
+      setPhase("in");
+    }, 280);
   }
+
+  function next() { go(1); }
 
   function skip() {
     localStorage.setItem("goaly_onboarded", "1");
@@ -142,6 +152,10 @@ function OnboardingPage() {
   }
 
   const s = slides[step];
+  const slideClass =
+    phase === "in"
+      ? dir === 1 ? "animate-slide-right" : "animate-slide-left"
+      : dir === 1 ? "animate-slide-out-left" : "animate-slide-out-right";
 
   return (
     <div className="h-dvh w-full bg-background overflow-hidden">
