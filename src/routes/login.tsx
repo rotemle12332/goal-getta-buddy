@@ -146,115 +146,113 @@ function LoginPage() {
             </p>
           </div>
 
-          <button
-            onClick={handleGoogle}
-            disabled={busy}
-            className="press lift mt-5 w-full h-12 rounded-2xl border border-border bg-card/60 flex items-center justify-center gap-3 text-sm font-medium disabled:opacity-50"
-          >
-            <GoogleIcon />
-            {t("login.google")}
-          </button>
+          <div className="flex-1 min-h-0 overflow-y-auto scrollbar-none">
+            <button
+              onClick={handleGoogle}
+              disabled={busy}
+              className="press lift mt-3 w-full h-11 rounded-2xl border border-border bg-card/60 flex items-center justify-center gap-3 text-sm font-medium disabled:opacity-50"
+            >
+              <GoogleIcon />
+              {t("login.google")}
+            </button>
 
-          <button
-            onClick={handleApple}
-            disabled={busy}
-            className="press lift mt-3 w-full h-12 rounded-2xl bg-foreground text-background flex items-center justify-center gap-3 text-sm font-medium disabled:opacity-50"
-          >
-            <AppleIcon />
-            {t("login.apple")}
-          </button>
+            <button
+              onClick={handleApple}
+              disabled={busy}
+              className="press lift mt-2 w-full h-11 rounded-2xl bg-foreground text-background flex items-center justify-center gap-3 text-sm font-medium disabled:opacity-50"
+            >
+              <AppleIcon />
+              {t("login.apple")}
+            </button>
 
-          <div className="flex items-center gap-3 my-4">
-            <div className="flex-1 h-px bg-border" />
-            <span className="text-xs text-muted-foreground">{t("common.or")}</span>
-            <div className="flex-1 h-px bg-border" />
-          </div>
+            <div className="flex items-center gap-3 my-3">
+              <div className="flex-1 h-px bg-border" />
+              <span className="text-[11px] text-muted-foreground">{t("common.or")}</span>
+              <div className="flex-1 h-px bg-border" />
+            </div>
 
-          <form onSubmit={handleSubmit} className="space-y-3">
-            {mode === "signup" && (
+            <form onSubmit={handleSubmit} className="space-y-2">
+              {mode === "signup" && (
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder={t("login.name")}
+                    className="w-full h-11 rounded-2xl border border-border bg-card/60 pl-4 pr-3 text-sm outline-none focus:border-primary/60 transition"
+                  />
+                </div>
+              )}
               <div className="relative">
+                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
                 <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder={t("login.name")}
-                  className="w-full h-12 rounded-2xl border border-border bg-card/60 pl-4 pr-3 text-sm outline-none focus:border-primary/60 transition"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder={t("login.email")}
+                  className="w-full h-11 rounded-2xl border border-border bg-card/60 pl-10 pr-3 text-sm outline-none focus:border-primary/60 transition"
                 />
               </div>
-            )}
-            <div className="relative">
-              <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder={t("login.email")}
-                className="w-full h-12 rounded-2xl border border-border bg-card/60 pl-10 pr-3 text-sm outline-none focus:border-primary/60 transition"
-              />
-            </div>
-            <div className="relative">
-              <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
-              <input
-                type={showPwd ? "text" : "password"}
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder={t("login.password")}
-                className="w-full h-12 rounded-2xl border border-border bg-card/60 pl-10 pr-10 text-sm outline-none focus:border-primary/60 transition"
-              />
+              <div className="relative">
+                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+                <input
+                  type={showPwd ? "text" : "password"}
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder={t("login.password")}
+                  className="w-full h-11 rounded-2xl border border-border bg-card/60 pl-10 pr-10 text-sm outline-none focus:border-primary/60 transition"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPwd((v) => !v)}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-muted-foreground"
+                >
+                  {showPwd ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+                </button>
+              </div>
+
+              {mode === "signup" && (
+                <div className="flex gap-3 text-[11px] flex-wrap pt-0.5">
+                  {[
+                    { ok: valid.len, label: t("login.req.len"), id: "len" },
+                    { ok: valid.num, label: t("login.req.num"), id: "num" },
+                    { ok: valid.up, label: t("login.req.up"), id: "up" },
+                  ].map((r) => (
+                    <span
+                      key={r.id}
+                      className="transition-colors"
+                      style={{ color: r.ok ? "var(--color-primary)" : "var(--color-muted-foreground)" }}
+                    >
+                      {r.label}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={busy}
+                className="press w-full h-11 rounded-2xl text-sm font-semibold text-white shadow-[var(--shadow-glow)] disabled:opacity-60 flex items-center justify-center gap-2 mt-1.5"
+                style={{ background: "var(--gradient-brand)" }}
+              >
+                {busy && <Loader2 className="size-4 animate-spin" />}
+                {mode === "signup" ? t("login.create") : t("login.signIn")}
+              </button>
+            </form>
+
+            <p className="text-center text-xs text-muted-foreground mt-3">
+              {mode === "signup" ? t("login.haveAccount") : t("login.newHere")}
               <button
                 type="button"
-                onClick={() => setShowPwd((v) => !v)}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-muted-foreground"
+                onClick={() => setMode(mode === "signup" ? "signin" : "signup")}
+                className="text-primary font-medium hover:underline ml-1"
               >
-                {showPwd ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+                {mode === "signup" ? t("login.logIn") : t("login.createOne")}
               </button>
-            </div>
-
-            {mode === "signup" && (
-              <div className="flex gap-4 text-xs flex-wrap">
-                {[
-                  { ok: valid.len, label: t("login.req.len"), id: "len" },
-                  { ok: valid.num, label: t("login.req.num"), id: "num" },
-                  { ok: valid.up, label: t("login.req.up"), id: "up" },
-                ].map((r) => (
-                  <span
-                    key={r.id}
-                    className="transition-colors"
-                    style={{ color: r.ok ? "var(--color-primary)" : "var(--color-muted-foreground)" }}
-                  >
-                    {r.label}
-                  </span>
-                ))}
-              </div>
-            )}
-
-            <button
-              type="submit"
-              disabled={busy}
-              className="press w-full h-12 rounded-2xl text-sm font-semibold text-white shadow-[var(--shadow-glow)] disabled:opacity-60 flex items-center justify-center gap-2 mt-2"
-              style={{ background: "var(--gradient-brand)" }}
-            >
-              {busy && <Loader2 className="size-4 animate-spin" />}
-              {mode === "signup" ? t("login.create") : t("login.signIn")}
-            </button>
-          </form>
-
-          <p className="text-center text-xs text-muted-foreground mt-4">
-            {mode === "signup" ? t("login.haveAccount") : t("login.newHere")}
-            <button
-              type="button"
-              onClick={() => setMode(mode === "signup" ? "signin" : "signup")}
-              className="text-primary font-medium hover:underline"
-            >
-              {mode === "signup" ? t("login.logIn") : t("login.createOne")}
-            </button>
-          </p>
-
-          <p className="text-center text-[10px] text-muted-foreground mt-3">
-            {t("app.tagline")}
-          </p>
+            </p>
+          </div>
         </div>
       </div>
     </div>
