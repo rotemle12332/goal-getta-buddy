@@ -15,8 +15,8 @@ export function BottomNav() {
   const path = location.pathname;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 px-4 pb-4 pointer-events-none z-50 mx-auto max-w-[480px]">
-      <div className="pointer-events-auto relative bg-card/85 backdrop-blur-xl border border-border rounded-2xl px-2 py-2 flex items-center justify-around shadow-[var(--shadow-soft)]">
+    <div className="fixed bottom-0 left-0 right-0 px-3 pb-[max(0.5rem,env(safe-area-inset-bottom))] pointer-events-none z-50 mx-auto max-w-[480px]">
+      <div className="pointer-events-auto relative bg-card/85 backdrop-blur-xl border border-border rounded-2xl px-2 py-1.5 flex items-center justify-around shadow-[var(--shadow-soft)]">
         {items.map((it) => {
           const active = path === it.to;
           const Icon = it.icon;
