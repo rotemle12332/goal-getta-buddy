@@ -117,36 +117,31 @@ function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen w-full bg-background">
-      <div className="relative w-full min-h-screen bg-background overflow-hidden flex flex-col animate-fade-in-soft">
+    <div className="h-dvh w-full bg-background overflow-hidden">
+      <div className="relative w-full h-full bg-background flex flex-col animate-fade-in-soft">
         {/* hero */}
-        <div className="px-8 pt-12 pb-8 relative">
-          <div className="flex items-center gap-2.5 mb-8 animate-fade-up">
+        <div className="px-6 pt-[max(1rem,env(safe-area-inset-top))] pb-3 shrink-0">
+          <div className="flex items-center gap-2 mb-3 animate-fade-up">
             <img
               src={goalyLogo.url}
               alt="Goaly"
-              className="size-12 rounded-2xl shadow-[var(--shadow-glow)] animate-pop bg-black/0"
+              className="size-9 rounded-xl shadow-[var(--shadow-glow)] animate-pop bg-black/0"
             />
-            <span className="text-2xl font-bold font-display tracking-tight">Goaly</span>
+            <span className="text-xl font-bold font-display tracking-tight">Goaly</span>
           </div>
-          <h1 className="text-3xl font-bold leading-tight font-display animate-fade-up" style={{ animationDelay: "0.05s" }}>
-            {t("login.hero.line1")}
-            <br />
-            <span className="text-gradient-brand">{t("login.hero.line2")}</span>
-            <br />
+          <h1 className="text-[22px] font-bold leading-[1.15] font-display animate-fade-up" style={{ animationDelay: "0.05s" }}>
+            {t("login.hero.line1")}{" "}
+            <span className="text-gradient-brand">{t("login.hero.line2")}</span>{" "}
             {t("login.hero.line3")}
           </h1>
-          <p className="text-sm text-muted-foreground mt-3 max-w-[260px] animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            {mode === "signup" ? t("login.subtitle.signup") : t("login.subtitle.signin")}
-          </p>
         </div>
 
-        <div className="flex-1 px-6 pb-6 rounded-t-[2rem] bg-card/40 border-t border-border backdrop-blur-sm animate-fade-up" style={{ animationDelay: "0.15s" }}>
-          <div className="pt-6">
-            <h2 className="text-xl font-bold font-display">
+        <div className="flex-1 min-h-0 px-5 pb-[max(1rem,env(safe-area-inset-bottom))] rounded-t-[1.75rem] bg-card/40 border-t border-border backdrop-blur-sm animate-fade-up overflow-hidden flex flex-col" style={{ animationDelay: "0.15s" }}>
+          <div className="pt-4 shrink-0">
+            <h2 className="text-lg font-bold font-display">
               {mode === "signup" ? t("login.title.signup") : t("login.title.signin")}
             </h2>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-[11px] text-muted-foreground mt-0.5">
               {mode === "signup" ? t("login.hint.signup") : t("login.hint.signin")}
             </p>
           </div>
